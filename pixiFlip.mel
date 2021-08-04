@@ -1,0 +1,12 @@
+{
+//Flips the selected Object & Freezes transformations.
+//Made by Clym Smith @2020
+string $x[] = `ls -sl`;
+string $xx = $x[0]+".scaleX";
+$xxx = `getAttr $xx`;
+$xxx *= -1;
+
+setAttr $xx $xxx;
+
+makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 -pn 1 $x[0];
+}

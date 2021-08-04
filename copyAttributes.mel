@@ -1,0 +1,21 @@
+{
+//Copy Move/Rotate/Scale attributes from selected object 1 onto all selected object/s after.
+//Made by Clym Smith @2020
+$arr = `ls -sl`;
+global string $fName;
+
+for ($i=0;$i<size($arr);$i++){
+     if ($i==0){
+         $fName = $arr[$i];
+     }   
+     else {
+         copyAttr -values -attribute tx -attribute ty -attribute tz -attribute rx -attribute ry -attribute rz -attribute sx -attribute sy -attribute sz $fName $arr[$i];
+     }
+}
+string $a = $fName + ".translate";
+setAttr $a 0 0 0;
+string $a = $fName + ".rotate";
+setAttr $a 0 0 0;
+string $a = $fName + ".scale";
+setAttr $a 1 1 1;
+}

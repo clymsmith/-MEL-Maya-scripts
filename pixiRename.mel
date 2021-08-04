@@ -1,0 +1,33 @@
+{
+//Opens up a rename window for selected objects. In window, press TAB to save and jump to next name... 
+//Made by Clym Smith @2020
+global string $arr[];
+global string $poo[];
+global string $tf[];
+$arr = `ls -sl`;
+			
+global proc vChanged(int $n) {
+global string $poo[];
+global string $arr[];
+global string $tf[];
+$value = `textField -query -text $poo[$n]`;
+text -edit -label $value $tf[$n];	
+rename $arr[$n] $value;			
+				
+$arr[$n] = $value;
+				
+}
+
+
+{
+string $window = `window -title "PixiWindowRename"`;
+rowColumnLayout -numberOfColumns 2 -columnAttach 1 "right" 0
+    -columnWidth 1 100 -columnWidth 2 250;
+    
+for ($i=0;$i<size($arr);++$i) { 
+$tf[$i] = `text -label $arr[$i]`;
+$poo[$i] = `textField -changeCommand ("vChanged("+$i+");")`;
+}
+showWindow $window;
+}
+}

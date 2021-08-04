@@ -1,0 +1,17 @@
+{
+//Select the object then select the group
+//Renames selected Obj2 to be the same as Obj1 + "OFFSET_grp"
+//Made by Clym Smith @2020
+$arr = `ls -sl`;
+string $fName;
+
+for ($i=0;$i<size($arr);$i++){
+     if ($i==0){
+         $fName = $arr[$i];
+     }   
+     else {
+         string $p = $fName + "OFFSET_grp";
+         rename $arr[$i] $p;
+     }
+}
+}
